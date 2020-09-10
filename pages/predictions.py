@@ -49,11 +49,11 @@ layout = dbc.Row([column1, column2])
 
 
 def predict(tokens):
-    df = pd.read_csv('notebooks/SandwichMarmiton.csv')
+    df = pd.read_csv('./notebooks/SandwichMarmiton.csv')
     df = df.drop(columns=['url'])
 
-    tfidf = pickle.load(open("notebooks/vect_01.pkl", "rb"))
-    nn = pickle.load(open("notebooks/knn_01.pkl", "rb"))
+    tfidf = pickle.load(open("./notebooks/vect_01.pkl", "rb"))
+    nn = pickle.load(open("./notebooks/knn_01.pkl", "rb"))
 
    # Transform
     request = pd.Series(tokens)
