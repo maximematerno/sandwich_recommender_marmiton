@@ -21,7 +21,7 @@ column1 = dbc.Col(
         dcc.Textarea(id='tokens',
     placeholder='Mets tes ingrédients içi',
     # type='text',
-    style={'width': 600, 'height':200},
+    style={'width': 400, 'height':200},
     value=''),  
     # dbc.FormText("Type something in the box above"),
                
