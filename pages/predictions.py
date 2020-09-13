@@ -34,6 +34,7 @@ column2 = dbc.Col(
     [
         html.H2('Sandwich Recommender Marmiton', className='mb-5'), 
         html.Div(id='prediction-content', className='lead'),
+        dcc.Link(id='url', href='', children="Lien De La Recette ICI!!!", target="_blank"),
         # html.A(html.Img(src='assets/Netflix_people.jpeg', className='img-fluid'), href="http://www.google.com/search?q='prediction-content',
         html.Img(src='assets/Sandwich2.jpeg', className='img-fluid')
     ]
@@ -42,15 +43,18 @@ column2 = dbc.Col(
 layout = dbc.Row([column1, column2])
 
 
-@app.callback(
-    Output('prediction-content', 'children'),
-    [Input('tokens','value')],
+@app.callback([
+    Output('prediction-content', 'children'), 
+    Output('url', 'href')],
+    [Input('tokens','value')]
 )
 
 
 def predict(tokens):
     df = pd.read_csv('./notebooks/SandwichMarmiton.csv')
-    df = df.drop(columns=['url'])
+    # df = df.drop(columns=['url'])
+    df['url2']=('https://www.marmiton.org'+ df['url'])
+    
 
     tfidf = pickle.load(open("./notebooks/vect_01.pkl", "rb"))
     nn = pickle.load(open("./notebooks/knn_01.pkl", "rb"))
@@ -77,5 +81,6 @@ def predict(tokens):
 
     result1 = "{}".format(df['title'][indexes[0][0]])
     # result2 = "{}".format(df['Strain'][indexes[0][1]])
+    link = "{}".format(df['url2'][indexes[0][0]])
 
-    return result1
+    return result1,link
