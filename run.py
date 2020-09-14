@@ -29,9 +29,9 @@ navbar = dbc.NavbarSimple(
     brand='Sandwich Recommender Marmiton',
     brand_href='/', 
     children=[
-        dbc.NavItem(dcc.Link('Predictions', href='/predictions', className='nav-link')), 
-        dbc.NavItem(dcc.Link('Insights', href='/insights', className='nav-link')), 
-        dbc.NavItem(dcc.Link('About', href='/about', className='nav-link')), 
+        dbc.NavItem(dcc.Link('Predictions', href='predictions', className='nav-link')), 
+        dbc.NavItem(dcc.Link('Insights', href='insights', className='nav-link')), 
+        dbc.NavItem(dcc.Link('About', href='about', className='nav-link')), 
     ],
     sticky='top',
     color='warning', 

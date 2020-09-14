@@ -15,37 +15,41 @@ column1 = dbc.Col(
         dcc.Markdown(
             """
         
-            ## Mets tes ingrédients !!! 
-            """, className='mb-3'
+            #### Tu ne sais pas quoi faire comme Sandwich ? Mets tes ingrédients ici !!! 
+            """,style={'width': '90%', 'display': 'inline-block'}, className='mb-4'
         ),
-        dcc.Textarea(id='tokens',
-    placeholder='Mets tes ingrédients içi',
-    # type='text',
-    style={'width': 400, 'height':200},
-    value=''),  
+        dcc.Textarea(id='tokens',placeholder='Mets tes ingrédients içi',style={'height':100,'width': '90%', 'display': 'inline-block'},value='',className='mb-4'),
+    html.Div(id='prediction-content', className='lead'),
+    dcc.Link(dbc.Button('Clique ICI pour voir la recette !!!', color='warning'), id='url-recette', href='', target="_blank"),
+    html.Img(src='assets/Sandwich2.jpeg',style={'width': '90%', 'display': 'inline-block'}, className='img-fluid'),
     # dbc.FormText("Type something in the box above"),
                
         # for _ in ALLOWED_TYPES
-    ],
-    md=7,
+    ],style={'display': 'inline-block'}
+    # md=7,
 )
 
 column2 = dbc.Col(
-    [
-        html.H2('Sandwich Recommender Marmiton', className='mb-5'), 
-        html.Div(id='prediction-content', className='lead'),
-        dcc.Link(id='url', href='', children="Lien De La Recette ICI!!!", target="_blank"),
+    [   #et tu auras une recette selon les ingrédients que tu as
+
+        # html.H2('Sandwich Recommender Marmiton', className='mb-5'), 
+        # html.Div(id='prediction-content', className='lead'),
+        # dcc.Link(id='url', href='', children="Lien De La Recette ICI!!!", target="_blank"),
+        
+        # dcc.Link(dbc.Button('Clique ICI pour voir la recette !!!', color='warning'), id='url', href='', target="_blank"),
+
+
         # html.A(html.Img(src='assets/Netflix_people.jpeg', className='img-fluid'), href="http://www.google.com/search?q='prediction-content',
-        html.Img(src='assets/Sandwich2.jpeg', className='img-fluid')
+        # html.Img(src='assets/Sandwich2.jpeg', className='img-fluid')
     ]
 )
 
-layout = dbc.Row([column1, column2])
+layout = dbc.Row([column1])
 
 
 @app.callback([
     Output('prediction-content', 'children'), 
-    Output('url', 'href')],
+    Output('url-recette', 'href')],
     [Input('tokens','value')]
 )
 
